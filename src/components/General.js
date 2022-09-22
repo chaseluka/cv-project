@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Preview from './Preview';
+import uniqid from 'uniqid';
+import '../style/General.css';
 
 class General extends Component {
   constructor() {
@@ -9,6 +12,8 @@ class General extends Component {
         name: '',
         phone: '',
         email: '',
+        id: uniqid(),
+        submit: false,
       },
     };
   }
@@ -35,33 +40,72 @@ class General extends Component {
         name: this.name(id, e),
         phone: this.phone(id, e),
         email: this.email(id, e),
+        id: this.state.personal.id,
+        submit: false,
       },
     });
-    console.log(this.state.personal.name);
   };
 
   onSubmitInfo = (e) => {
     e.preventDefault();
     this.setState({
       personal: {
-        name: '',
-        phone: '',
-        email: '',
+        name: this.state.personal.name,
+        phone: this.state.personal.phone,
+        email: this.state.personal.email,
+        id: this.state.personal.id,
+        submit: true,
       },
     });
   };
 
+  edit = () => {
+    this.setState(
+      {
+        personal: {
+          name: this.state.personal.name,
+          phone: this.state.personal.phone,
+          email: this.state.personal.email,
+          id: this.state.personal.id,
+          submit: false,
+        },
+      },
+      () => {
+        this.displayInfo();
+      },
+    );
+  };
+
+  displayInfo = () => {
+    document.getElementById('name').value = this.state.personal.name;
+    document.getElementById('phone').value = this.state.personal.phone;
+    document.getElementById('email').value = this.state.personal.email;
+  };
+
   render() {
     const info = this.state;
-
     return (
       <div>
-        <form onSubmit={this.onSubmitInfo}>
-          <input onChange={this.handleChange} value={info.name} type="text" id="name" placeholder="First and Last Name" />
-          <input onChange={this.handleChange} value={info.phone} type="text" id="phone" placeholder="Phone" />
-          <input onChange={this.handleChange} value={info.email} type="text" id="email" placeholder="Email" />
-          <button type="submit">Save General Info</button>
-        </form>
+        {(() => {
+          if (this.state.personal.submit) {
+            return (
+              <div>
+                <Preview info={info} />
+                <button onClick={this.edit}>Edit</button>
+              </div>
+            );
+          }
+          return (
+            <form onSubmit={this.onSubmitInfo} className="form">
+              <div className="general-form">
+                <input onChange={this.handleChange} value={info.name} type="text" id="name" placeholder="First and Last Name" />
+                <input onChange={this.handleChange} value={info.phone} type="text" id="phone" placeholder="Phone" />
+                <input onChange={this.handleChange} value={info.email} type="text" id="email" placeholder="Email" />
+              </div>
+              <button type="submit">Save General Info</button>
+            </form>
+          );
+        })()}
       </div>
     );
   }

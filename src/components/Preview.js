@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
 class Preview extends Component {
-  constructor(props) {
-    super();
-
-    this.state = {
-      personal: {
-        name: '',
-        phone: '',
-        email: '',
-      },
-    };
+  render() {
+    const { name, phone, email, id } = this.props.info.personal;
+    return (
+      <div key={id}>
+        <div>{name}</div>
+        <div>{phone}</div>
+        <div>{email}</div>
+      </div>
+    );
   }
 }
 

@@ -1,0 +1,8 @@
+.form {
+  display: flex;
+}
+
+.general-inp {
+  display: flex;
+  flex-direction: column;
+}

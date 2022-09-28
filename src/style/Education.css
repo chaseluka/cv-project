@@ -1,0 +1,76 @@
+.education-info,
+.education-form {
+  display: flex;
+  justify-content: space-between;
+  width: 98vw;
+}
+
+.education-input {
+  margin-left: 2rem;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 0.9rem;
+  text-decoration: underline;
+}
+
+.education-section {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.education-section input {
+  border: none;
+  background-color: #f1f1f1;
+  font-family: 'Lato', sans-serif;
+  padding: 0;
+}
+
+#degree {
+  font-style: italic;
+}
+
+#location {
+  font-weight: bolder;
+}
+#degree,
+#discipline {
+}
+
+.education-section input:focus {
+  outline: none;
+}
+
+.education-save,
+.education-edit {
+  font-size: 0.8rem;
+  width: fit-content;
+  height: 1.6rem;
+  border: none;
+  border-radius: 10%;
+}
+
+.education-save {
+  box-shadow: 1px 1px #aaa;
+  background-color: #ddd;
+  color: #333;
+}
+
+.education-edit {
+  background-color: #555;
+  color: #eee;
+  box-shadow: 1px 1px #bbb;
+}
+
+#degree,
+#discipline,
+#location,
+#year {
+  font-size: 1rem;
+}
+
+.seperate {
+  font-size: 1rem;
+}

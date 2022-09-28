@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.general-form,
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  width: 98vw;
+}
+
+.general-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 0.8rem;
+}
+
+.general-save,
+.general-edit {
+  font-size: 0.8rem;
+  width: fit-content;
+  height: 1.6rem;
+  border: none;
+  border-radius: 10%;
+}
+
+.general-save {
+  box-shadow: 1px 1px #aaa;
+  background-color: #ddd;
+  color: #333;
+}
+
+#name,
+#phone,
+#email {
+  border: none;
+  background-color: #f1f1f1;
+  font-family: 'Lato', sans-serif;
+  padding: 0;
+}
+
+#name:focus,
+#phone:focus,
+#email:focus {
+  outline: none;
+}
+
+#name {
+  font-size: 2rem;
+}
+
+#phone,
+#email {
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+
+.general-edit {
+  background-color: #555;
+  color: #eee;
+  box-shadow: 1px 1px #bbb;
+}

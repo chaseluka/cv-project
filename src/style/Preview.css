@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+.name {
+  font-size: 2rem;
+}
+
+.phone,
+.email,
+.degree,
+.discipline,
+.location,
+.year {
+  font-size: 1rem;
+}
+
+.location {
+  font-weight: bolder;
+}
+
+.phone,
+.email {
+  margin-left: 0.3rem;
+}
+
+.seperate {
+  font-size: 1rem;
+}
+
+.degree {
+  font-style: italic;
+}

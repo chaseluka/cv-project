@@ -89,20 +89,24 @@ class General extends Component {
         {(() => {
           if (this.state.personal.submit) {
             return (
-              <div>
+              <div className="general-info">
                 <Preview info={info} />
-                <button onClick={this.edit}>Edit</button>
+                <button className="general-edit" onClick={this.edit}>
+                  Edit
+                </button>
               </div>
             );
           }
           return (
-            <form onSubmit={this.onSubmitInfo} className="form">
-              <div className="general-form">
+            <form onSubmit={this.onSubmitInfo} className="general-form">
+              <div className="general-input">
                 <input onChange={this.handleChange} value={info.name} type="text" id="name" placeholder="First and Last Name" />
                 <input onChange={this.handleChange} value={info.phone} type="text" id="phone" placeholder="Phone" />
                 <input onChange={this.handleChange} value={info.email} type="text" id="email" placeholder="Email" />
               </div>
-              <button type="submit">Save General Info</button>
+              <button className="general-save" type="submit">
+                Save
+              </button>
             </form>
           );
         })()}

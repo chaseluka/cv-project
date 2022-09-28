@@ -6,41 +6,43 @@
 }
 
 .education-input {
-  margin-left: 2rem;
-}
-
-.title {
-  font-weight: bold;
-  font-size: 1.5rem;
   margin-left: 0.9rem;
-  text-decoration: underline;
+  display: flex;
 }
 
-.education-section {
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.main-info {
   display: flex;
   gap: 0.2rem;
 }
 
-.education-section input {
+li {
+  margin-left: 1.2rem;
+}
+
+input {
   border: none;
   background-color: #f1f1f1;
   font-family: 'Lato', sans-serif;
   padding: 0;
 }
 
-#degree {
-  font-style: italic;
-}
-
 #location {
-  font-weight: bolder;
-}
-#degree,
-#discipline {
+  width: 20rem;
 }
 
-.education-section input:focus {
+.year {
+  width: 7rem;
+}
+
+input:focus {
   outline: none;
+  background-color: transparent;
 }
 
 .education-save,
@@ -66,9 +68,24 @@
 
 #degree,
 #discipline,
-#location,
-#year {
-  font-size: 1rem;
+#year,
+#role {
+  font-size: 0.9rem;
+}
+
+#degree,
+#discipling,
+#role {
+  font-weight: bold;
+}
+
+#company,
+#location {
+  font-size: 0.82rem;
+}
+
+#notes {
+  font-size: 0.8rem;
 }
 
 .seperate {

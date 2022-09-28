@@ -1,0 +1,49 @@
+.title {
+  font-size: 1.2rem;
+  margin-left: 0.9rem;
+}
+
+.underline {
+  width: 90vw;
+  margin-left: 0.9rem;
+  height: 1px;
+  background-color: #9a9a9a;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.buttons {
+  align-self: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buttons button {
+  box-shadow: 1px 1px #aaa;
+  font-size: 0.8rem;
+  width: fit-content;
+  height: 1.6rem;
+  border: none;
+  border-radius: 5%;
+}
+
+.addWork,
+.addEd {
+  background-color: #20ac76;
+  color: #fff;
+}
+
+.del {
+  background-color: #455a64;
+  color: #eee;
+}
+
+.cv {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}

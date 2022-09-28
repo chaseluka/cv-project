@@ -16,23 +16,51 @@ class Preview extends Component {
       const { degree, discipline, location, year, notes, id } = this.props.info.education;
       return (
         <div key={id} className="education-input">
-          <div className="education-section">
-            <div className="degree">{degree}</div>
-            <div className="seperate">|</div>
-            <div className="discipline">{discipline}</div>
+          <div className="year">
+            <div>{year}</div>
           </div>
-          <div className="education-section">
-            <div className="location">{location}</div>
-            <div className="seperate">|</div>
-            <div className="year">{year}</div>
+          <div className="main">
+            <div className="main-info">
+              <div className="degree">{degree}</div>
+              <div className="seperate">|</div>
+              <div className="discipline">{discipline}</div>
+            </div>
+            <div>
+              <div className="location">{location}</div>
+            </div>
+            <div>
+              {(() => {
+                if (notes !== '') {
+                  return <li className="notes">{notes}</li>;
+                }
+                return;
+              })()}
+            </div>
           </div>
-          <div>
-            {(() => {
-              if (notes !== '') {
-                return <li className="notes">{notes}</li>;
-              }
-              return;
-            })()}
+        </div>
+      );
+    } else if (this.props.info.hasOwnProperty('work')) {
+      const { role, company, year, notes, id } = this.props.info.work;
+      return (
+        <div key={id} className="education-input">
+          <div className="year">
+            <div>{year}</div>
+          </div>
+          <div className="main">
+            <div className="main-info">
+              <div className="role">{role}</div>
+            </div>
+            <div>
+              <div className="company">{company}</div>
+            </div>
+            <div>
+              {(() => {
+                if (notes !== '') {
+                  return <li className="notes">{notes}</li>;
+                }
+                return;
+              })()}
+            </div>
           </div>
         </div>
       );

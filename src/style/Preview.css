@@ -4,17 +4,10 @@
   font-size: 2rem;
 }
 
-.phone,
-.email,
-.degree,
-.discipline,
 .location,
-.year {
-  font-size: 1rem;
-}
-
-.location {
+.company {
   font-weight: bolder;
+  font-style: italic;
 }
 
 .phone,
@@ -26,6 +19,22 @@
   font-size: 1rem;
 }
 
-.degree {
-  font-style: italic;
+.year,
+.main {
+  font-size: 0.9rem;
+}
+
+.location,
+.company {
+  font-size: 0.82rem;
+}
+
+.degree,
+.discipling,
+.role {
+  font-weight: bolder;
+}
+
+.notes {
+  font-size: 0.8rem;
 }

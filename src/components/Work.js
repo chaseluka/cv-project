@@ -99,33 +99,36 @@ class Work extends Component {
         {(() => {
           if (this.state.work.submit) {
             return (
-              <div className="work-info">
+              <div className="education-info">
                 <Preview info={info} />
-                <button className="work-edit" onClick={this.edit}>
+                <button className="education-edit" onClick={this.edit}>
                   Edit
                 </button>
               </div>
             );
           }
           return (
-            <form onSubmit={this.onSubmitInfo} className="work-form">
-              <div className="work-input">
-                <div className="work-section">
-                  <input onChange={this.handleChange} value={info.role} type="text" id="role" placeholder="role" />
-                  <div className="seperate">|</div>
-                  <input onChange={this.handleChange} value={info.company} type="text" id="company" placeholder="company" />
+            <form onSubmit={this.onSubmitInfo} className="education-form">
+              <div className="education-input">
+                <div className="year">
+                  <input onChange={this.handleChange} value={info.year} type="text" id="year" placeholder="Year" />
                 </div>
-                <div className="work-section">
-                  <div className="seperate">|</div>
-                  <input onChange={this.handleChange} value={info.year} type="text" id="year" placeholder="Year (start - end)" />
-                </div>
-                <div>
-                  <li>
-                    <input onChange={this.handleChange} value={info.notes} type="text" id="notes" placeholder="Additional Notes" />
-                  </li>
+                <div className="main">
+                  <div className="main-info">
+                    <input onChange={this.handleChange} value={info.role} type="text" id="role" placeholder="Role/Position" />
+                  </div>
+                  <div>
+                    <input onChange={this.handleChange} value={info.company} type="text" id="company" placeholder="Company Name" />
+                  </div>
+                  <div>
+                    <li>
+                      <input onChange={this.handleChange} value={info.notes} type="text" id="notes" placeholder="Additional Notes" />
+                    </li>
+                  </div>
                 </div>
               </div>
-              <button className="work-save" type="submit">
+
+              <button className="education-save" type="submit">
                 Save
               </button>
             </form>

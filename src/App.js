@@ -3,14 +3,15 @@ import General from './components/General';
 import Education from './components/Education';
 import Work from './components/Work';
 import uniqid from 'uniqid';
+import './style/App.css';
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      educations: [],
-      work: [],
+      educations: [<Education key={uniqid()} />],
+      work: [<Work key={uniqid()} />],
     };
   }
 
@@ -55,47 +56,57 @@ class App extends Component {
     const work = this.state.work;
 
     return (
-      <div>
+      <div className="cv">
         <General />
-        <div>
-          <div className="title">Education: </div>
+        <div className="container">
+          <div className="title-container">
+            <div className="title">EDUCATION</div>
+            <div className="underline"></div>
+          </div>
           {educations}
-          <button
-            className="addEd"
-            onClick={() => {
-              this.addEducation();
-            }}
-          >
-            Add Education
-          </button>
-          <button
-            className="delEd"
-            onClick={() => {
-              this.deleteEducation();
-            }}
-          >
-            Delete Education
-          </button>
+          <div className="buttons">
+            <button
+              className="addEd"
+              onClick={() => {
+                this.addEducation();
+              }}
+            >
+              Add
+            </button>
+            <button
+              className="del"
+              onClick={() => {
+                this.deleteEducation();
+              }}
+            >
+              Delete
+            </button>
+          </div>
         </div>
-        <div>
-          <div className="title">Work Experience: </div>
+        <div className="container">
+          <div className="title-container">
+            <div className="title">WORK EXPERIENCE</div>
+            <div className="underline"></div>
+          </div>
           {work}
-          <button
-            className="addWork"
-            onClick={() => {
-              this.addWork();
-            }}
-          >
-            Add Work
-          </button>
-          <button
-            className="delWork"
-            onClick={() => {
-              this.deleteWork();
-            }}
-          >
-            Delete Work
-          </button>
+          <div className="buttons">
+            <button
+              className="addWork"
+              onClick={() => {
+                this.addWork();
+              }}
+            >
+              Add
+            </button>
+            <button
+              className="del"
+              onClick={() => {
+                this.deleteWork();
+              }}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     );

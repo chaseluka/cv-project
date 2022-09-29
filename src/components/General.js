@@ -1,118 +1,70 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Preview from './Preview';
 import uniqid from 'uniqid';
 import '../style/General.css';
 
-class General extends Component {
-  constructor() {
-    super();
+const General = () => {
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const id = uniqid();
+  const [submit, setSubmit] = useState(false);
 
-    this.state = {
-      personal: {
-        name: '',
-        phone: '',
-        email: '',
-        id: uniqid(),
-        submit: false,
-      },
-    };
-  }
-
-  phone = (id, e) => {
-    if (id === 'phone') return e.target.value;
-    return this.state.personal.phone;
+  const handleChange = (e) => {
+    const elmtId = e.target.id;
+    if (elmtId === 'name') setName(e.target.value);
+    if (elmtId === 'phone') setPhone(e.target.value);
+    if (elmtId === 'email') setEmail(e.target.value);
   };
 
-  email = (id, e) => {
-    if (id === 'email') return e.target.value;
-    return this.state.personal.email;
-  };
-
-  name = (id, e) => {
-    if (id === 'name') return e.target.value;
-    return this.state.personal.name;
-  };
-
-  handleChange = (e) => {
-    const id = e.target.id;
-    this.setState({
-      personal: {
-        name: this.name(id, e),
-        phone: this.phone(id, e),
-        email: this.email(id, e),
-        id: this.state.personal.id,
-        submit: false,
-      },
-    });
-  };
-
-  onSubmitInfo = (e) => {
+  const onSubmitInfo = (e) => {
     e.preventDefault();
-    this.setState({
-      personal: {
-        name: this.state.personal.name,
-        phone: this.state.personal.phone,
-        email: this.state.personal.email,
-        id: this.state.personal.id,
-        submit: true,
-      },
-    });
+    setSubmit(true);
   };
 
-  edit = () => {
-    this.setState(
-      {
-        personal: {
-          name: this.state.personal.name,
-          phone: this.state.personal.phone,
-          email: this.state.personal.email,
-          id: this.state.personal.id,
-          submit: false,
-        },
-      },
-      () => {
-        this.displayInfo();
-      },
-    );
+  const edit = () => {
+    setSubmit(false);
   };
 
-  displayInfo = () => {
-    document.getElementById('name').value = this.state.personal.name;
-    document.getElementById('phone').value = this.state.personal.phone;
-    document.getElementById('email').value = this.state.personal.email;
-  };
+  useEffect(() => {
+    if (!submit) {
+      const displayEdit = () => {
+        document.getElementById('name').value = name;
+        document.getElementById('phone').value = phone;
+        document.getElementById('email').value = email;
+      };
+      displayEdit();
+    }
+  }, [email, name, phone, submit]);
 
-  render() {
-    const info = this.state;
-    return (
-      <div>
-        {(() => {
-          if (this.state.personal.submit) {
-            return (
-              <div className="general-info">
-                <Preview info={info} />
-                <button className="general-edit" onClick={this.edit}>
-                  Edit
-                </button>
-              </div>
-            );
-          }
+  return (
+    <div>
+      {(() => {
+        if (submit) {
           return (
-            <form onSubmit={this.onSubmitInfo} className="general-form">
-              <div className="general-input">
-                <input onChange={this.handleChange} value={info.name} type="text" id="name" placeholder="First and Last Name" />
-                <input onChange={this.handleChange} value={info.phone} type="text" id="phone" placeholder="Phone" />
-                <input onChange={this.handleChange} value={info.email} type="text" id="email" placeholder="Email" />
-              </div>
-              <button className="general-save" type="submit">
-                Save
+            <div className="general-info">
+              <Preview general={[name, phone, email, id]} />
+              <button className="general-edit" onClick={edit}>
+                Edit
               </button>
-            </form>
+            </div>
           );
-        })()}
-      </div>
-    );
-  }
-}
+        }
+        return (
+          <form onSubmit={onSubmitInfo} className="general-form">
+            <div className="general-input">
+              <input onChange={handleChange} value={name} type="text" id="name" placeholder="First and Last Name" />
+              <input onChange={handleChange} value={phone} type="text" id="phone" placeholder="Phone" />
+              <input onChange={handleChange} value={email} type="text" id="email" placeholder="Email" />
+            </div>
+            <button className="general-save" type="submit">
+              Save
+            </button>
+          </form>
+        );
+      })()}
+    </div>
+  );
+};
 
 export default General;

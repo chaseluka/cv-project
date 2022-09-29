@@ -1,142 +1,87 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import Preview from './Preview';
 import uniqid from 'uniqid';
 import '../style/Work.css';
 
-class Work extends Component {
-  constructor() {
-    super();
+const Work = () => {
+  const [role, setRole] = useState('');
+  const [company, setCompany] = useState('');
+  const [year, setYear] = useState('');
+  const [notes, setNotes] = useState('');
+  const id = uniqid();
+  const [submit, setSubmit] = useState(false);
 
-    this.state = {
-      work: {
-        role: '',
-        company: '',
-        year: '',
-        notes: '',
-        id: uniqid(),
-        submit: false,
-      },
-    };
-  }
-
-  notes = (id, e) => {
-    if (id === 'notes') return e.target.value;
-    return this.state.work.notes;
+  const handleChange = (e) => {
+    const elmtId = e.target.id;
+    if (elmtId === 'role') setRole(e.target.value);
+    if (elmtId === 'company') setCompany(e.target.value);
+    if (elmtId === 'year') setYear(e.target.value);
+    if (elmtId === 'notes') setNotes(e.target.value);
   };
 
-  year = (id, e) => {
-    if (id === 'year') return e.target.value;
-    return this.state.work.year;
-  };
-
-  role = (id, e) => {
-    if (id === 'role') return e.target.value;
-    return this.state.work.role;
-  };
-
-  company = (id, e) => {
-    if (id === 'company') return e.target.value;
-    return this.state.work.company;
-  };
-
-  handleChange = (e) => {
-    const id = e.target.id;
-    this.setState({
-      work: {
-        role: this.role(id, e),
-        company: this.company(id, e),
-        year: this.year(id, e),
-        notes: this.notes(id, e),
-        id: this.state.work.id,
-        submit: false,
-      },
-    });
-  };
-
-  onSubmitInfo = (e) => {
+  const onSubmitInfo = (e) => {
     e.preventDefault();
-    this.setState({
-      work: {
-        role: this.state.work.role,
-        company: this.state.work.company,
-        year: this.state.work.year,
-        notes: this.state.work.notes,
-        id: this.state.work.id,
-        submit: true,
-      },
-    });
+    setSubmit(true);
   };
 
-  edit = () => {
-    this.setState(
-      {
-        work: {
-          role: this.state.work.role,
-          company: this.state.work.company,
-          year: this.state.work.year,
-          notes: this.state.work.notes,
-          id: this.state.work.id,
-          submit: false,
-        },
-      },
-      () => {
-        this.displayInfo();
-      },
-    );
+  const edit = () => {
+    setSubmit(false);
   };
 
-  displayInfo = () => {
-    document.getElementById('role').value = this.state.work.role;
-    document.getElementById('company').value = this.state.work.company;
-    document.getElementById('year').value = this.state.work.year;
-    document.getElementById('notes').value = this.state.work.notes;
-  };
+  useEffect(() => {
+    if (!submit) {
+      const displayEdit = () => {
+        document.getElementById('role').value = role;
+        document.getElementById('company').value = company;
+        document.getElementById('year').value = year;
+        document.getElementById('notes').value = notes;
+      };
+      displayEdit();
+    }
+  }, [company, notes, role, submit, year]);
 
-  render() {
-    const info = this.state;
-    return (
-      <div>
-        {(() => {
-          if (this.state.work.submit) {
-            return (
-              <div className="education-info">
-                <Preview info={info} />
-                <button className="education-edit" onClick={this.edit}>
-                  Edit
-                </button>
-              </div>
-            );
-          }
+  return (
+    <div>
+      {(() => {
+        if (submit) {
           return (
-            <form onSubmit={this.onSubmitInfo} className="education-form">
-              <div className="education-input">
-                <div className="year">
-                  <input onChange={this.handleChange} value={info.year} type="text" id="year" placeholder="Year" />
+            <div className="education-info">
+              <Preview work={[role, company, year, notes, id]} />
+              <button className="education-edit" onClick={edit}>
+                Edit
+              </button>
+            </div>
+          );
+        }
+        return (
+          <form onSubmit={onSubmitInfo} className="education-form">
+            <div className="education-input">
+              <div className="year">
+                <input onChange={handleChange} value={year} type="text" id="year" placeholder="Year" />
+              </div>
+              <div className="main">
+                <div className="main-info">
+                  <input onChange={handleChange} value={role} type="text" id="role" placeholder="Role/Position" />
                 </div>
-                <div className="main">
-                  <div className="main-info">
-                    <input onChange={this.handleChange} value={info.role} type="text" id="role" placeholder="Role/Position" />
-                  </div>
-                  <div>
-                    <input onChange={this.handleChange} value={info.company} type="text" id="company" placeholder="Company Name" />
-                  </div>
-                  <div>
-                    <li>
-                      <input onChange={this.handleChange} value={info.notes} type="text" id="notes" placeholder="Additional Notes" />
-                    </li>
-                  </div>
+                <div>
+                  <input onChange={handleChange} value={company} type="text" id="company" placeholder="Company Name" />
+                </div>
+                <div>
+                  <li>
+                    <input onChange={handleChange} value={notes} type="text" id="notes" placeholder="Additional Notes" />
+                  </li>
                 </div>
               </div>
+            </div>
 
-              <button className="education-save" type="submit">
-                Save
-              </button>
-            </form>
-          );
-        })()}
-      </div>
-    );
-  }
-}
+            <button className="education-save" type="submit">
+              Save
+            </button>
+          </form>
+        );
+      })()}
+    </div>
+  );
+};
 
 export default Work;
